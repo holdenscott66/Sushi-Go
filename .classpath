@@ -2,6 +2,5 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry excluding="Sushi-Go/src/" kind="src" path=""/>
-	<classpathentry kind="src" path="Sushi-Go/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
