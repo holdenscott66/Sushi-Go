@@ -1,5 +1,6 @@
+package Cards;
 
-public class Dumpling {
+public class salmonNigiri {
 
 	public static int main(String[] args) {
 		return 1;

@@ -1,5 +1,6 @@
+package Cards;
 
-public class Wasabi {
+public class Pudding {
 
 	public static int main(String[] args) {
 		return 1;
