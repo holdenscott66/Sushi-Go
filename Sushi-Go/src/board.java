@@ -1,6 +1,7 @@
 
 public class board{
-
+	// DANIEL TIU SUBMISSION
+	//BOARD CLASS ROUGH DRAFT
 	
 	//create array list with 10 empty elements
 	// during turn phase use hand/turn class to update boards 
