@@ -1,4 +1,8 @@
-
+/**
+ * 
+ * @author scottholden
+ *
+ */
 
 public class Card {
 	public int Chopsticks() {
