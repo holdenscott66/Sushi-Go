@@ -19,10 +19,10 @@ public class start {
 				case 1: System.out.println("Option 1");
 				isPositive = false;
 				break;
-				case 2: System.out.println("Option 1");
+				case 2: System.out.println("Option 2");
 				isPositive = false;
 				break;
-				case 3: System.out.println("Option 1");
+				case 3: System.out.println("Option 3");
 				isPositive = false;
 				break;
 				}
