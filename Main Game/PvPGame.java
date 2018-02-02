@@ -4,11 +4,19 @@ public class PvPGame {
 	Player p1 = new Player();
 	Player p2 = new Player();
 	
-	public void setup() {
-		
+	
+	public static void setup() {
+		GameConfiguration.getHand1();
+		GameConfiguration.getHand2();
+		GameConfiguration.displayBoard();
+			
 	}
 	
-	public void play() {
+	public static void play() {
+		
+		while (true) {
+			
+		}
 		
 	}
 	

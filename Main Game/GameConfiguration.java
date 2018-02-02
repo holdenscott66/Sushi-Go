@@ -2,32 +2,36 @@ import java.util.ArrayList;
 
 public class GameConfiguration {
 	
-	private ArrayList<String> hand1;
-	private ArrayList<String> hand2;
-	private ArrayList<String> boardp1;
-	private ArrayList<String> boardp2;
+	private static ArrayList<String> hand1 = Deck.generateHand();
+	private static ArrayList<String> hand2 = Deck.generateHand();
+	private static ArrayList<String> boardp1;
+	private static ArrayList<String> boardp2;
 	
-	public void getHand1() {
+	public static ArrayList<String> getHand1() {
+		return hand1;
+	}
+	
+	public static ArrayList<String> getHand2() {
+		return hand2;
+	}
+	
+	public static void update() {
+		hand1 = null;
+		hand2 = null;
+		boardp1 = null;
+		boardp2 = null;
 		
 	}
 	
-	public void getHand2() {
+	public static void displayBoard(){
 		
 	}
 	
-	public void update() {
+	public static void gameOver() {
 		
 	}
 	
-	public void displayBoard(){
-		
-	}
-	
-	public void gameOver() {
-		
-	}
-	
-	public void finalScore() {
+	public static void finalScore() {
 		
 	}
 }
