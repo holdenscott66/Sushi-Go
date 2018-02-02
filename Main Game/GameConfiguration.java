@@ -32,6 +32,7 @@ public class GameConfiguration {
 	}
 	
 	public static void finalScore() {
+		int tempura, sashimi, dumpling, wasabiNigiri, pudding, maki;
 		
 	}
 }
