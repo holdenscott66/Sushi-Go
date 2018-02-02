@@ -2,12 +2,16 @@ import java.util.ArrayList;
 
 public class Deck {
 
-	private ArrayList deck = new ArrayList();
+	private ArrayList<String> deck = new ArrayList();
 	
-	
-	public static ArrayList<String> generateHand(){
+	public static void createDeck(){
+		
+	}
+		
+	public static ArrayList<String> setHand(){
 		return null;
 		
 	}
+		
 
 }

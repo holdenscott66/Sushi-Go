@@ -26,12 +26,7 @@ public class Player {
 				System.out.println("Please choose a valid option");
 			}
 		}
-		return possibleMoves.get(selection);
+		return possibleMoves.get(selection - 1);
 	}
 	
-	public ArrayList<String> newHand(){
-		possibleMoves.remove(selection - 1);
-		return possibleMoves;
-	
-	}
 }
