@@ -42,6 +42,7 @@ public class Start {
 	}
 	
 	public static void playerVSplayer() {
+		
 		PvPGame.setup();
 		PvPGame.play();
 		
