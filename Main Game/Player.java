@@ -1,20 +1,20 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Player {
 	
-	private ArrayList<String> possibleMoves;
+	private LinkedList<String> possibleMoves;
 	private int selection;
 	
-	public ArrayList<String> getPossibleMoves() {
+	public LinkedList<String> getPossibleMoves() {
 		return possibleMoves;
 	}
 	
-	public void setPossibleMoves(ArrayList<String> hand) {
+	public void setPossibleMoves(LinkedList<String> hand) {
 		possibleMoves = hand;
 		
 	}
+	
 	
 	public String move() {
 		Scanner user_input = new Scanner(System.in);

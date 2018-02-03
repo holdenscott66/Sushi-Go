@@ -1,12 +1,17 @@
-import java.util.ArrayList;
-import java.util.Random;
+import java.util.*;
+
 
 public class Deck {
 
-	private static ArrayList<String> deckOfCards = new ArrayList();
-	private static ArrayList<String> hand = new ArrayList();
+	private LinkedList<String> deckOfCards;
+	private LinkedList<String> hand;
+	private Random randCard;
 	
-	public static void createDeck(){
+	public Deck() {
+		deckOfCards = new LinkedList();
+		hand = new LinkedList();
+		randCard = new Random();
+		
 		
 		for(int cardNumber = 0; cardNumber < 4; cardNumber++) {
 			deckOfCards.add("Chopsticks");
@@ -57,16 +62,14 @@ public class Deck {
 		for(int cardNumber = 0; cardNumber < 10; cardNumber++) {
 			deckOfCards.add("Pudding");
 		}
-				
+		
 	}
 	
-	public static ArrayList<String> setHand(){
-		
-		Random randCard = new Random();
-		
+	public LinkedList<String> setHand(){
 		for(int count = 0; count < 10; count ++) {
 			int cardNum = randCard.nextInt(deckOfCards.size());
-			hand.add(deckOfCards.get(cardNum));
+			String newCard = deckOfCards.get(cardNum);
+			hand.add(newCard);
 			deckOfCards.remove(cardNum);
 		}
 		
