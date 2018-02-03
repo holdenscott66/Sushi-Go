@@ -43,21 +43,18 @@ public class GameConfiguration {
 	
 	public void displayBoard(){
 		System.out.println("Player 1's Board: "); 
-		
 		if (boardp1.size() == 0) {
 			System.out.println("Board is Empty");
 		}	
-		
 		else {
 			for (int count = 0; count < boardp1.size(); count ++) {
 				System.out.println((count + 1) + ")" + "	" + boardp1.get(count));				
 		}
-		System.out.println("Player 2's Board: ");
-						   
+			
+		System.out.println("Player 2's Board: ");				   
 		if (boardp2.size() == 0) {
 			System.out.println("Board is Empty");
 		}
-						   
 		else {
 			for (int count = 0; count < boardp2.size(); count ++) {
 				System.out.println((count + 1) + ")" + "	" + boardp2.get(count));		
