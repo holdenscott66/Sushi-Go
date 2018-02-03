@@ -4,12 +4,13 @@ import java.util.*;
 public class Deck {
 
 	private LinkedList<String> deckOfCards;
-	private LinkedList<String> hand;
+	private LinkedList<String> hand1, hand2;
 	private Random randCard;
 	
 	public Deck() {
 		deckOfCards = new LinkedList();
-		hand = new LinkedList();
+		hand1 = new LinkedList();
+		hand2 = new LinkedList();
 		randCard = new Random();
 		
 		
@@ -65,16 +66,28 @@ public class Deck {
 		
 	}
 	
-	public LinkedList<String> setHand(){
+	public LinkedList<String> setHand1(){
 		for(int count = 0; count < 10; count ++) {
 			int cardNum = randCard.nextInt(deckOfCards.size());
 			String newCard = deckOfCards.get(cardNum);
-			hand.add(newCard);
+			hand1.add(newCard);
 			deckOfCards.remove(cardNum);
 		}
 		
-		return hand;
+		return hand1;
 	}
+	
+	public LinkedList<String> setHand2(){
+		for(int count = 0; count < 10; count ++) {
+			int cardNum = randCard.nextInt(deckOfCards.size());
+			String newCard = deckOfCards.get(cardNum);
+			hand2.add(newCard);
+			deckOfCards.remove(cardNum);
+		}
+		
+		return hand2;
+	}
+		
 		
 
 }

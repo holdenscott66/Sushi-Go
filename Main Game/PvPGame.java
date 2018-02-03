@@ -30,7 +30,7 @@ public class PvPGame {
 	public void play() {
 		int turn = 0;
 		
-		for(int count = 0; count < hand1.size(); count++) {
+		for(int count = 0; count < hand2.size(); count++) {
 		//while ((hand1.size() >= 0) && (hand2.size() >=0)) {
 			
 			G1.displayBoard();
@@ -39,8 +39,9 @@ public class PvPGame {
 				p1.setPossibleMoves(hand1);
 				p2.setPossibleMoves(hand2);
 				G1.displayHand("1", hand1);
-				p1.move();
+				
 				G1.displayHand("2", hand2);
+				p1.move();
 				p2.move();
 				G1.updateHands(p1, p2);
 				G1.updateBoard(p1, p2);

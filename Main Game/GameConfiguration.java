@@ -11,8 +11,8 @@ public class GameConfiguration {
 		newDeck = new Deck();
 		hand1 = new LinkedList();
 		hand2 = new LinkedList();
-		hand1.addAll(newDeck.setHand());
-		hand2.addAll(newDeck.setHand());
+		hand1.addAll(newDeck.setHand1());
+		hand2.addAll(newDeck.setHand2());
 	}
 	
 	public LinkedList<String> getHand1() {
@@ -27,7 +27,7 @@ public class GameConfiguration {
 		 
 			System.out.println("Player " + player + ":" );
 			for(int count = 0; count < hand.size(); count++) {
-				System.out.println((count + 1) + ")" + "      "+ hand.get(count));
+				System.out.println((count + 1) + ")" + "      " + hand.get(count));
 			}
 	}
 	

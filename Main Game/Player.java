@@ -18,6 +18,7 @@ public class Player {
 	
 	public String move() {
 		Scanner user_input = new Scanner(System.in);
+		System.out.print("Enter the number of the card you choose:");
 		boolean isPositive = true;
 		while (isPositive) {
 			selection = user_input.nextInt();
