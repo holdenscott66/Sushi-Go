@@ -5,6 +5,7 @@ public class Player {
 	
 	private LinkedList<String> possibleMoves;
 	private int selection;
+	private Scanner user_input;
 	
 	public LinkedList<String> getPossibleMoves() {
 		return possibleMoves;
@@ -17,7 +18,7 @@ public class Player {
 	
 	
 	public String move() {
-		Scanner user_input = new Scanner(System.in);
+		user_input = new Scanner(System.in);
 		System.out.print("Enter the number of the card you choose:");
 		boolean isPositive = true;
 		while (isPositive) {

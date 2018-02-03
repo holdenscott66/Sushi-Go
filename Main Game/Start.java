@@ -5,11 +5,12 @@ import java.util.*;
 
 public class Start {
 
+	private static Scanner user_input;
+
 	public static void main(String[] args) {
 		
 		
-		//variables 
-		Scanner user_input = new Scanner(System.in);
+		user_input = new Scanner(System.in);
 		
 		
 		System.out.println("Sushi GO!");
@@ -52,7 +53,6 @@ public class Start {
 	
 	public static void playerVSplayer() {
 		PvPGame game = new PvPGame();		
-		game.setup();
 		game.play();
 		
 	}

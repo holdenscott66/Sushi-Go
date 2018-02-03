@@ -17,14 +17,8 @@ public class PvPGame {
 		G1 = new GameConfiguration();
 		hand1 = new LinkedList<String>(); 
 		hand2 = new LinkedList<String>(); 
-	}
-	
-	public void setup() {
-		//hand1.addAll(GameConfiguration.getHand1());
-		//hand2.addAll(GameConfiguration.getHand2());
 		hand1 = G1.getHand1();
 		hand2 = G1.getHand2();
-		G1.displayBoard();
 	}
 	
 	public void play() {
@@ -39,8 +33,8 @@ public class PvPGame {
 				p1.setPossibleMoves(hand1);
 				p2.setPossibleMoves(hand2);
 				G1.displayHand("1", hand1);
-				p1.move();
 				G1.displayHand("2", hand2);
+				p1.move();
 				p2.move();
 				G1.updateHands(p1, p2);
 				G1.updateBoard(p1, p2);

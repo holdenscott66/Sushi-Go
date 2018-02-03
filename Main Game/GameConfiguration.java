@@ -9,10 +9,12 @@ public class GameConfiguration {
 	
 	public GameConfiguration() {
 		newDeck = new Deck();
-		hand1 = new LinkedList();
-		hand2 = new LinkedList();
-		hand1.addAll(newDeck.setHand1());
-		hand2.addAll(newDeck.setHand2());
+		boardp1 = new LinkedList<String>();
+		boardp2 = new LinkedList<String>();
+		hand1 = new LinkedList<String>();
+		hand2 = new LinkedList<String>();
+		hand1.addAll(newDeck.setHand());
+		hand2.addAll(newDeck.setHand());
 	}
 	
 	public LinkedList<String> getHand1() {
@@ -48,17 +50,19 @@ public class GameConfiguration {
 		}	
 		else {
 			for (int count = 0; count < boardp1.size(); count ++) {
-				System.out.println((count + 1) + ")" + "	" + boardp1.get(count));				
+				System.out.println((count + 1) + ")" + "	" + boardp1.get(count));	
+			}
 		}
 			
-		System.out.println("Player 2's Board: ");				   
+		System.out.println("Player 2's Board: ");	   
 		if (boardp2.size() == 0) {
 			System.out.println("Board is Empty");
 		}
 		else {
 			for (int count = 0; count < boardp2.size(); count ++) {
-				System.out.println((count + 1) + ")" + "	" + boardp2.get(count));		
-		}	
+				System.out.println((count + 1) + ")" + "	" + boardp2.get(count));
+			}
+		}
 	}
 	
 	public void gameOver() {
@@ -66,7 +70,7 @@ public class GameConfiguration {
 	}
 	
 	public void finalScore() {
-		int tempura, sashimi, dumpling, wasabiNigiri, pudding, maki;
+		//int tempura, sashimi, dumpling, wasabiNigiri, pudding, maki;
 		
 	}
 }
