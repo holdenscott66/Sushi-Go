@@ -46,7 +46,7 @@ public class Deck {
 		for(int cardNumber = 0; cardNumber < 8; cardNumber++) {
 			deckOfCards.add("MakiRoll3");
 		}
-		
+		Hashtable<String, Integer> score2 = new Hashtable<String, Integer>();
 		for(int cardNumber = 0; cardNumber < 14; cardNumber++) {
 			deckOfCards.add("Sashimi");
 		}

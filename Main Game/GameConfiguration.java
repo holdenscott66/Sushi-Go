@@ -70,6 +70,8 @@ public class GameConfiguration {
 		//int tempura = 0, sashimi = 0, dumpling = 0, wasabiNigiri = 0, pudding = 0, maki = 0;
 		Hashtable<String, Integer> score = new Hashtable<String, Integer>();
 		LinkedList<String> board = new LinkedList<String>();
+		int finalScore,chopsticks, dumpling, eggNigiri, salmonNigiri, squidNigiri, makiRoll1,
+		makiRoll2, makiRoll3, sashimi, tempura, wasabi, pudding;
 		
 		if (player == 1) {
 			board = boardp1;
@@ -83,15 +85,40 @@ public class GameConfiguration {
 				score.replace(card, (score.get(card) + 1));
 			}
 			else {
-				score.put(card, 1);
-				
+				score.put(card, 1);	
 			}
 		}
-		System.out.println("Player " + player + "'s score:");
+		System.out.println("Player " + player + "'s cards:");
 		for (String val : ((Hashtable<String,Integer>) score).keySet()) {
 		    System.out.println(val + ":" + score.get(val));
 		}
+		switch(score.getOrDefault("Dumpling", 0)) {
+		case 1:
+			dumpling = 1;
+			break;
+		case 2:
+			dumpling = 3;
+			break;
+		case 3:
+			dumpling = 6;
+			break;
+		case 4:
+			dumpling = 10;
+			break;
+		case 5:
+			dumpling = 15;
+			break;
+		default:
+			dumpling = 0;
+			break;
+		}
 		
+		sashimi = (score.getOrDefault("Sashimi", 0) / 3) * 10;
+		tempura = (score.getOrDefault("Tempura", 0) / 2) * 5;
+		
+		finalScore = dumpling + sashimi + tempura;
+		
+		System.out.println("Player " + player + "'s score: " + finalScore);
 		score.clear();
 		
 	}
