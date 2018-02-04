@@ -24,8 +24,8 @@ public class PvPGame {
 	public void play() {
 		int turn = 0;
 		
-		for(int count = 0; count < hand2.size(); count++) {
-		//while ((hand1.size() >= 0) && (hand2.size() >=0)) {
+		//for(int count = 0; count < hand2.size(); count++) {
+		while ((hand1.size() >= 0) && (hand2.size() >=0)) {
 			
 			G1.displayBoard();
 			
@@ -57,7 +57,9 @@ public class PvPGame {
 			
 			turn++;
 		}
-		G1.finalScore();
+		G1.finalScore(1);
+		G1.finalScore(2);
+		
 		
 	}
 	

@@ -7,6 +7,7 @@ public class GameConfiguration {
 	private LinkedList<String> boardp1;
 	private LinkedList<String> boardp2;
 	
+	
 	public GameConfiguration() {
 		newDeck = new Deck();
 		boardp1 = new LinkedList<String>();
@@ -69,8 +70,35 @@ public class GameConfiguration {
 		
 	}
 	
-	public void finalScore() {
-		//int tempura, sashimi, dumpling, wasabiNigiri, pudding, maki;
+	public void finalScore(int player) {
+		//int tempura = 0, sashimi = 0, dumpling = 0, wasabiNigiri = 0, pudding = 0, maki = 0;
+		Hashtable<String, Integer> score = new Hashtable<String, Integer>(10);
+		LinkedList<String> board = new LinkedList<String>();
+		
+		/*score.put("Sashimi", 0);
+		score.put("Chopsticks", 0);
+		score.put("Dumping", 0);
+		score.put("EggNigiri", 0);
+		score.put("SalmonNigiri", 0);
+		score.put("SquidNigiri", 0);
+		score.put("MakiRoll1", 0);
+		score.put("MakiRoll2", 0);
+		score.put("MakiRoll3", 0);
+		score.put("Tempura", 0);
+		score.put("Wasabi", 0);
+		score.put("Pudding", 0);
+		*/
+		
+		if (player == 1) {
+			board = boardp1;	
+		}
+		
+		else if (player == 2) {
+			board = boardp2;
+		}
+		
+		
+		
 		
 	}
 }
