@@ -33,9 +33,9 @@ public class PvPGame {
 				p1.setPossibleMoves(hand1);
 				p2.setPossibleMoves(hand2);
 				G1.displayHand("1", hand1);
+				p1.move(1);
 				G1.displayHand("2", hand2);
-				p1.move();
-				p2.move();
+				p2.move(2);
 				G1.updateHands(p1, p2);
 				G1.updateBoard(p1, p2);
 				
@@ -45,9 +45,9 @@ public class PvPGame {
 				p1.setPossibleMoves(hand2);
 				p2.setPossibleMoves(hand1);
 				G1.displayHand("1", hand2);
-				p1.move();
+				p1.move(1);
 				G1.displayHand("2", hand1);
-				p2.move();
+				p2.move(2);
 				G1.updateHands(p2, p1);
 				G1.updateBoard(p1, p2);
 				

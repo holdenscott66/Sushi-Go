@@ -34,13 +34,13 @@ public class GameConfiguration {
 	}
 	
 	public void updateHands(Player firstPlayer, Player secondPlayer) {
-		hand1.remove(firstPlayer.move());
-		hand2.remove(secondPlayer.move());
+		hand1.remove(firstPlayer.cardPlayed());
+		hand2.remove(secondPlayer.cardPlayed());
 	}
 	
 	public void updateBoard(Player player1, Player player2) {
-		boardp1.add(player1.move());
-		boardp2.add(player2.move());
+		boardp1.add(player1.cardPlayed());
+		boardp2.add(player2.cardPlayed());
 	}
 	
 	public void displayBoard(){
