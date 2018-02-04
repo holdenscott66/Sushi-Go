@@ -3,8 +3,7 @@ import java.util.*;
 public class FinalScore {
 	Hashtable<String, Integer> playerBoard;
 	Hashtable<String, Integer> opponentBoard;
-	int finalScore, dumpling, eggNigiri, salmonNigiri, squidNigiri, makiRoll, 
-	sashimi, tempura, wasabi, pudding;
+	private int finalScore;
 	
 	public FinalScore(GameConfiguration game, int player) {
 		if (player == 1) {
@@ -22,79 +21,76 @@ public class FinalScore {
 		tempuraScore();
 		wasabiNigiriScore();
 		nigiriScore();
-		displayScore(player);
+		System.out.println("Player " + player + "'s score: " + finalScore);
 	}
 	
 	private void dumplingScore() {
 		switch(playerBoard.getOrDefault("Dumpling", 0)) {
 		case 1:
-			dumpling = 1;
+			finalScore += 1;
 			break;
 		case 2:
-			dumpling = 3;
+			finalScore += 3;
 			break;
 		case 3:
-			dumpling = 6;
+			finalScore += 6;
 			break;
 		case 4:
-			dumpling = 10;
+			finalScore += 10;
 			break;
 		case 5:
-			dumpling = 15;
+			finalScore += 15;
 			break;
 		default:
-			dumpling = 0;
+			finalScore += 0;
 			break;
 		}
 	}
 	
 	private void puddingScore() {
 		if(playerBoard.getOrDefault("Pudding", 0) > opponentBoard.getOrDefault("Pudding", 0))
-			pudding = 6;
+			finalScore += 6;
 		else if(playerBoard.getOrDefault("Pudding", 0) < opponentBoard.getOrDefault("Pudding", 0))
-			pudding = -6;
+			finalScore += -6;
 		else
-			pudding = 0;
+			finalScore += 0;
 	}
 	
 	private void makiRollScore() {
 		if(playerBoard.getOrDefault("MakiRoll", 0) > opponentBoard.getOrDefault("MakiRoll", 0))
-			makiRoll = 5;
+			finalScore += 5;
 		else
-			makiRoll = 0;
+			finalScore += 0;
 	}
 	
 	private void sashimiScore() {
-		sashimi = (playerBoard.getOrDefault("Sashimi", 0) / 3) * 10;
+		finalScore += (playerBoard.getOrDefault("Sashimi", 0) / 3) * 10;
 	}
 	
 	private void tempuraScore() {
-		tempura = (playerBoard.getOrDefault("Tempura", 0) / 2) * 5;
+		finalScore += (playerBoard.getOrDefault("Tempura", 0) / 2) * 5;
 	}
 	
 	private void nigiriScore() {
-		squidNigiri = squidNigiri + (playerBoard.getOrDefault("squidNigiri", 0) * 3);
-		salmonNigiri = salmonNigiri + (playerBoard.getOrDefault("SalmonNigiri", 0) * 2);
-		eggNigiri = eggNigiri + (playerBoard.getOrDefault("EggNigiri", 0) * 1);
+		finalScore += (playerBoard.getOrDefault("squidNigiri", 0) * 3);
+		finalScore += (playerBoard.getOrDefault("SalmonNigiri", 0) * 2);
+		finalScore += (playerBoard.getOrDefault("EggNigiri", 0) * 1);
 	}
 	
 	private void wasabiNigiriScore() {
-		squidNigiri = 0;
-		salmonNigiri = 0;
-		eggNigiri = 0;
 		while(playerBoard.getOrDefault("Wasabi", 0) > 0) {
 			if(playerBoard.getOrDefault("SquidNigiri", 0) > 0) {
-				squidNigiri = squidNigiri + 9;
+				finalScore += 9;
 				playerBoard.replace("Wasabi", (playerBoard.get("Wasabi") - 1));
 				playerBoard.replace("SquidNigiri", (playerBoard.get("SquidNigiri") - 1));
 			}
 			else if (playerBoard.getOrDefault("SalmonNigiri", 0) > 0) {
-				salmonNigiri = salmonNigiri + 6;
+				finalScore += 6;
 				playerBoard.replace("Wasabi", (playerBoard.get("Wasabi") - 1));
 				playerBoard.replace("SalmonNigiri", (playerBoard.get("SalmonNigiri") - 1));
 			}
 			else if(playerBoard.getOrDefault("EggNigiri", 0) > 0) {
-				eggNigiri = eggNigiri + 3;
+				finalScore += 3;
 				playerBoard.replace("Wasabi", (playerBoard.get("Wasabi") - 1));
 				playerBoard.replace("EggNigiri", (playerBoard.get("EggNigiri") - 1));
 			}
@@ -102,10 +98,4 @@ public class FinalScore {
 				playerBoard.replace("Wasabi", 0);
 		}
 	}
-	
-	private void displayScore(int player) {
-		finalScore = dumpling + sashimi + tempura + pudding + makiRoll + squidNigiri + salmonNigiri + eggNigiri;
-		System.out.println("Player " + player + "'s score: " + finalScore);
-	}
 }
-
