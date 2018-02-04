@@ -9,9 +9,7 @@ public class Start {
 
 	public static void main(String[] args) {
 		
-		
 		user_input = new Scanner(System.in);
-		
 		
 		System.out.println("Sushi GO!");
 		System.out.println("1) Player vs Player");
@@ -19,7 +17,6 @@ public class Start {
 		System.out.println("3) Player vs Hard Computer");
 		System.out.println("4) Rules");
 		System.out.print("Please Choose One of the Options: ");
-		
 		
 		boolean isPositive = true;
 		while (isPositive) {
@@ -48,13 +45,11 @@ public class Start {
 					}
 			}
 		}
-		
 	}
 	
 	public static void playerVSplayer() {
 		PvPGame game = new PvPGame();		
 		game.play();
-		
 	}
 	
 	public static void playerVSeasy() {
@@ -64,5 +59,4 @@ public class Start {
 	public static void playerVShard() {
 		
 	}
-
 }

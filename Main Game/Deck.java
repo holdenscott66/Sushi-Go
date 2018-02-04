@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 public class Deck {
 
 	private LinkedList<String> deckOfCards;
@@ -22,7 +21,6 @@ public class Deck {
 		
 		for(int cardNumber = 0; cardNumber < 10; cardNumber++) {
 			deckOfCards.add("SalmonNigiri");
-			
 		}
 		
 		for(int cardNumber = 0; cardNumber < 5; cardNumber++) {
@@ -48,27 +46,25 @@ public class Deck {
 		for(int cardNumber = 0; cardNumber < 10; cardNumber++) {
 			deckOfCards.add("Pudding");
 		}
-		
 	}
 	
 	public LinkedList<String> setHand(){
-			if (hand.size() == 0) {
-				for(int count = 0; count < 10; count ++) {
-					int cardNum = randCard.nextInt(deckOfCards.size());
-					String newCard = deckOfCards.get(cardNum);
-					hand.add(newCard);
-					deckOfCards.remove(cardNum);
-				}
+		if (hand.size() == 0) {
+			for(int count = 0; count < 10; count ++) {
+				int cardNum = randCard.nextInt(deckOfCards.size());
+				String newCard = deckOfCards.get(cardNum);
+				hand.add(newCard);
+				deckOfCards.remove(cardNum);
 			}
-			else {
-				for(int count = 0; count < 10; count ++) {
-					int cardNum = randCard.nextInt(deckOfCards.size());
-					String newCard = deckOfCards.get(cardNum);
-					hand.set(count, newCard);
-					deckOfCards.remove(cardNum);
-				}
+		}
+		else {
+			for(int count = 0; count < 10; count ++) {
+				int cardNum = randCard.nextInt(deckOfCards.size());
+				String newCard = deckOfCards.get(cardNum);
+				hand.set(count, newCard);
+				deckOfCards.remove(cardNum);
 			}
-		
+		}
 		return hand;
 	}
 }

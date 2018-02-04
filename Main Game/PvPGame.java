@@ -8,9 +8,7 @@ public class PvPGame {
 	private LinkedList<String> hand1;
 	private LinkedList<String> hand2;
 	
-	
 	//constructor
-	
 	public PvPGame() {
 		p1 = new Player();
 		p2 = new Player();
@@ -23,46 +21,37 @@ public class PvPGame {
 	
 	public void play() {
 		int turn = 0;
-		
-		//for(int count = 0; count < hand2.size(); count++) {
 		while ((hand1.size() > 0) && (hand2.size() > 0)) {
 			
-			G1.displayBoard();
+			G1.displayBoard(1);
+			G1.displayBoard(2);
 			
 			if(turn % 2 == 0) {
 				p1.setPossibleMoves(hand1);
 				p2.setPossibleMoves(hand2);
-				G1.displayHand("1", hand1);
+				G1.displayHand(1, hand1);
 				p1.move(1);
-				G1.displayHand("2", hand2);
+				G1.displayHand(2, hand2);
 				p2.move(2);
 				G1.updateHands(p1, p2);
 				G1.updateBoard(p1, p2);
-				
 			}
 			
 			else if(turn % 2 == 1) {
 				p1.setPossibleMoves(hand2);
 				p2.setPossibleMoves(hand1);
-				G1.displayHand("1", hand2);
+				G1.displayHand(1, hand2);
 				p1.move(1);
-				G1.displayHand("2", hand1);
+				G1.displayHand(2, hand1);
 				p2.move(2);
 				G1.updateHands(p2, p1);
 				G1.updateBoard(p1, p2);
-				
-				
-				
 			}
-			
 			turn++;
 		}
+		G1.displayBoard(1);
+		G1.displayBoard(2);
 		G1.finalScore(1);
-		G1.finalScore(2);
-		
-		
+		G1.finalScore(2);	
 	}
-	
-	
-
 }

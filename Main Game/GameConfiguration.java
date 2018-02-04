@@ -1,17 +1,17 @@
 import java.util.*;
 
 public class GameConfiguration {
+	
 	private Deck newDeck;
 	private LinkedList<String> hand1;
 	private LinkedList<String> hand2;
-	private LinkedList<String> boardp1;
-	private LinkedList<String> boardp2;
-	
+	Hashtable<String, Integer> boardp1;
+	Hashtable<String, Integer> boardp2;
 	
 	public GameConfiguration() {
 		newDeck = new Deck();
-		boardp1 = new LinkedList<String>();
-		boardp2 = new LinkedList<String>();
+		boardp1 = new Hashtable<String, Integer>();
+		boardp2 = new Hashtable<String, Integer>();
 		hand1 = new LinkedList<String>();
 		hand2 = new LinkedList<String>();
 		hand1.addAll(newDeck.setHand());
@@ -26,8 +26,7 @@ public class GameConfiguration {
 		return hand2;
 	}
 	
-	public void displayHand(String player, LinkedList<String> hand) {
-		 
+	public void displayHand(int player, LinkedList<String> hand) {
 			System.out.println("Player " + player + ":" );
 			for(int count = 0; count < hand.size(); count++) {
 				System.out.println((count + 1) + ")" + "      " + hand.get(count));
@@ -40,59 +39,52 @@ public class GameConfiguration {
 	}
 	
 	public void updateBoard(Player player1, Player player2) {
-		boardp1.add(player1.cardPlayed());
-		boardp2.add(player2.cardPlayed());
+		String card1 = player1.cardPlayed();
+		String card2 = player2.cardPlayed();
+		if(boardp1.containsKey(card1)) {
+			boardp1.replace(card1, (boardp1.get(card1) + 1));
+		}
+		else {
+			boardp1.put(card1, 1);	
+		}
+		if(boardp2.containsKey(card2)) {
+			boardp2.replace(card2, (boardp2.get(card2) + 1));
+		}
+		else {
+			boardp2.put(card2, 1);	
+		}
 	}
 	
-	public void displayBoard(){
-		System.out.println("Player 1's Board: "); 
-		if (boardp1.size() == 0) {
-			System.out.println("Board is Empty");
-		}	
-		else {
-			for (int count = 0; count < boardp1.size(); count ++) {
-				System.out.println((count + 1) + ")" + "	" + boardp1.get(count));	
-			}
+	public void displayBoard(int player) {
+		Hashtable<String, Integer> board = new Hashtable<String, Integer>();
+		System.out.println("Player "+ player + "'s board:");
+		if (player == 1) {
+			board = boardp1;
 		}
-			
-		System.out.println("Player 2's Board: ");	   
-		if (boardp2.size() == 0) {
-			System.out.println("Board is Empty");
+		else if (player == 2) {
+			board = boardp2;
 		}
-		else {
-			for (int count = 0; count < boardp2.size(); count ++) {
-				System.out.println((count + 1) + ")" + "	" + boardp2.get(count));
-			}
+		for (String val : ((Hashtable<String,Integer>) board).keySet()) {
+		    System.out.println(val + ":" + board.get(val));
 		}
 	}
 	
 	public void finalScore(int player) {
-		//int tempura = 0, sashimi = 0, dumpling = 0, wasabiNigiri = 0, pudding = 0, maki = 0;
-		Hashtable<String, Integer> score = new Hashtable<String, Integer>();
-		LinkedList<String> board = new LinkedList<String>();
+		Hashtable<String, Integer> playerBoard = new Hashtable<String, Integer>();
+		Hashtable<String, Integer> opponentBoard = new Hashtable<String, Integer>();
 		int finalScore, dumpling, eggNigiri, salmonNigiri, squidNigiri, makiRoll, 
 		sashimi, tempura, wasabi, pudding;
 		
 		if (player == 1) {
-			board = boardp1;
+			playerBoard = boardp1;
+			opponentBoard = boardp2;
 		}
-		
 		else if (player == 2) {
-			board = boardp2;
+			playerBoard = boardp2;
+			opponentBoard = boardp1;
 		}
-		for(String card: board) {
-			if(score.containsKey(card)) {
-				score.replace(card, (score.get(card) + 1));
-			}
-			else {
-				score.put(card, 1);	
-			}
-		}
-		System.out.println("Player " + player + "'s cards:");
-		for (String val : ((Hashtable<String,Integer>) score).keySet()) {
-		    System.out.println(val + ":" + score.get(val));
-		}
-		switch(score.getOrDefault("Dumpling", 0)) {
+		//dumpling score
+		switch(playerBoard.getOrDefault("Dumpling", 0)) {
 		case 1:
 			dumpling = 1;
 			break;
@@ -112,14 +104,30 @@ public class GameConfiguration {
 			dumpling = 0;
 			break;
 		}
+		//pudding score
+		if(playerBoard.getOrDefault("Pudding", 0) > opponentBoard.getOrDefault("Pudding", 0))
+			pudding = 6;
+		else if(playerBoard.getOrDefault("Pudding", 0) < opponentBoard.getOrDefault("Pudding", 0))
+			pudding = -6;
+		else
+			pudding = 0;
+		//makiroll score
+		if(playerBoard.getOrDefault("MakiRoll", 0) > opponentBoard.getOrDefault("MakiRoll", 0))
+			makiRoll = 5;
+		else
+			makiRoll = 0;
+		//
+		//sashimi score
+		sashimi = (playerBoard.getOrDefault("Sashimi", 0) / 3) * 10;
+		//tempura score
+		tempura = (playerBoard.getOrDefault("Tempura", 0) / 2) * 5;
 		
-		sashimi = (score.getOrDefault("Sashimi", 0) / 3) * 10;
-		tempura = (score.getOrDefault("Tempura", 0) / 2) * 5;
-		
-		finalScore = dumpling + sashimi + tempura;
+		finalScore = dumpling + sashimi + tempura + pudding + makiRoll;
 		
 		System.out.println("Player " + player + "'s score: " + finalScore);
-		score.clear();
+		playerBoard.clear();
+		finalScore = 0;
+		
 		
 	}
 }

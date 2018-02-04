@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 public class Player {
 	
 	private LinkedList<String> possibleMoves;
@@ -8,16 +7,13 @@ public class Player {
 	private Scanner user_input;
 	private String card;
 	
-	
 	public LinkedList<String> getPossibleMoves() {
 		return possibleMoves;
 	}
 	
 	public void setPossibleMoves(LinkedList<String> hand) {
 		possibleMoves = hand;
-		
 	}
-	
 	
 	public void move(int player) {
 		user_input = new Scanner(System.in);
@@ -33,13 +29,9 @@ public class Player {
 				break;
 			}
 		}
-
 	}
 	
 	public String cardPlayed() {
 		return card;
 	}
-	
 }
-
-
