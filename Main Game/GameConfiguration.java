@@ -18,12 +18,8 @@ public class GameConfiguration {
 		hand2.addAll(newDeck.setHand());
 	}
 	
-	public LinkedList<String> getHand1() {
-		return hand1;
-	}
-	
-	public LinkedList<String> getHand2() {
-		return hand2;
+	public LinkedList<String> getHand(int player) {
+		return(player == 1) ? hand1 : hand2;
 	}
 	
 	public void displayHand(int player, LinkedList<String> hand) {
@@ -55,6 +51,10 @@ public class GameConfiguration {
 		}
 	}
 	
+	public Hashtable<String,Integer> getBoard(int player) {
+		return player == 1 ? boardp1 : boardp2;
+	}
+	
 	public void displayBoard(int player) {
 		Hashtable<String, Integer> board = new Hashtable<String, Integer>();
 		System.out.println("Player "+ player + "'s board:");
@@ -67,68 +67,6 @@ public class GameConfiguration {
 		for (String val : ((Hashtable<String,Integer>) board).keySet()) {
 		    System.out.println(val + ":" + board.get(val));
 		}
-	}
-	
-	public void finalScore(int player) {
-		Hashtable<String, Integer> playerBoard = new Hashtable<String, Integer>();
-		Hashtable<String, Integer> opponentBoard = new Hashtable<String, Integer>();
-		int finalScore, dumpling, eggNigiri, salmonNigiri, squidNigiri, makiRoll, 
-		sashimi, tempura, wasabi, pudding;
-		
-		if (player == 1) {
-			playerBoard = boardp1;
-			opponentBoard = boardp2;
-		}
-		else if (player == 2) {
-			playerBoard = boardp2;
-			opponentBoard = boardp1;
-		}
-		//dumpling score
-		switch(playerBoard.getOrDefault("Dumpling", 0)) {
-		case 1:
-			dumpling = 1;
-			break;
-		case 2:
-			dumpling = 3;
-			break;
-		case 3:
-			dumpling = 6;
-			break;
-		case 4:
-			dumpling = 10;
-			break;
-		case 5:
-			dumpling = 15;
-			break;
-		default:
-			dumpling = 0;
-			break;
-		}
-		//pudding score
-		if(playerBoard.getOrDefault("Pudding", 0) > opponentBoard.getOrDefault("Pudding", 0))
-			pudding = 6;
-		else if(playerBoard.getOrDefault("Pudding", 0) < opponentBoard.getOrDefault("Pudding", 0))
-			pudding = -6;
-		else
-			pudding = 0;
-		//makiroll score
-		if(playerBoard.getOrDefault("MakiRoll", 0) > opponentBoard.getOrDefault("MakiRoll", 0))
-			makiRoll = 5;
-		else
-			makiRoll = 0;
-		//
-		//sashimi score
-		sashimi = (playerBoard.getOrDefault("Sashimi", 0) / 3) * 10;
-		//tempura score
-		tempura = (playerBoard.getOrDefault("Tempura", 0) / 2) * 5;
-		
-		finalScore = dumpling + sashimi + tempura + pudding + makiRoll;
-		
-		System.out.println("Player " + player + "'s score: " + finalScore);
-		playerBoard.clear();
-		finalScore = 0;
-		
-		
 	}
 }
 

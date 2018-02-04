@@ -15,8 +15,8 @@ public class PvPGame {
 		G1 = new GameConfiguration();
 		hand1 = new LinkedList<String>(); 
 		hand2 = new LinkedList<String>(); 
-		hand1 = G1.getHand1();
-		hand2 = G1.getHand2();
+		hand1 = G1.getHand(1);
+		hand2 = G1.getHand(2);
 	}
 	
 	public void play() {
@@ -50,8 +50,8 @@ public class PvPGame {
 			turn++;
 		}
 		G1.displayBoard(1);
-		G1.displayBoard(2);
-		G1.finalScore(1);
-		G1.finalScore(2);	
+		G1.displayBoard(2);	
+		new FinalScore(G1, 1);
+		new FinalScore(G1, 2);
 	}
 }
