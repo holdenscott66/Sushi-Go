@@ -25,7 +25,7 @@ public class PvPGame {
 		int turn = 0;
 		
 		//for(int count = 0; count < hand2.size(); count++) {
-		while ((hand1.size() >= 0) && (hand2.size() >=0)) {
+		while ((hand1.size() > 0) && (hand2.size() > 0)) {
 			
 			G1.displayBoard();
 			
