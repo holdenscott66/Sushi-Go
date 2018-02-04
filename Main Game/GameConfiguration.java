@@ -70,8 +70,8 @@ public class GameConfiguration {
 		//int tempura = 0, sashimi = 0, dumpling = 0, wasabiNigiri = 0, pudding = 0, maki = 0;
 		Hashtable<String, Integer> score = new Hashtable<String, Integer>();
 		LinkedList<String> board = new LinkedList<String>();
-		int finalScore,chopsticks, dumpling, eggNigiri, salmonNigiri, squidNigiri, makiRoll1,
-		makiRoll2, makiRoll3, sashimi, tempura, wasabi, pudding;
+		int finalScore, dumpling, eggNigiri, salmonNigiri, squidNigiri, makiRoll, 
+		sashimi, tempura, wasabi, pudding;
 		
 		if (player == 1) {
 			board = boardp1;

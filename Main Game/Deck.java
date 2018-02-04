@@ -12,11 +12,6 @@ public class Deck {
 		hand = new LinkedList<String>();
 		randCard = new Random();
 		
-		
-		for(int cardNumber = 0; cardNumber < 4; cardNumber++) {
-			deckOfCards.add("Chopsticks");
-		}
-		
 		for(int cardNumber = 0; cardNumber < 14; cardNumber++) {
 			deckOfCards.add("Dumpling");
 		}
@@ -34,19 +29,10 @@ public class Deck {
 			deckOfCards.add("SquidNigiri");
 		}
 		
-		for(int cardNumber = 0; cardNumber < 6; cardNumber++) {
-			deckOfCards.add("MakiRoll1");
+		for(int cardNumber = 0; cardNumber < 26; cardNumber++) {
+			deckOfCards.add("MakiRoll");
 		}
 		
-		for(int cardNumber = 0; cardNumber < 12; cardNumber++) {
-			deckOfCards.add("MakiRoll2");
-			
-		}
-		
-		for(int cardNumber = 0; cardNumber < 8; cardNumber++) {
-			deckOfCards.add("MakiRoll3");
-		}
-		Hashtable<String, Integer> score2 = new Hashtable<String, Integer>();
 		for(int cardNumber = 0; cardNumber < 14; cardNumber++) {
 			deckOfCards.add("Sashimi");
 		}
