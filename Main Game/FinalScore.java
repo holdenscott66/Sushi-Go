@@ -20,8 +20,8 @@ public class FinalScore {
 		makiRollScore();
 		sashimiScore();
 		tempuraScore();
-		nigiriScore();
 		wasabiNigiriScore();
+		nigiriScore();
 		displayScore(player);
 	}
 	
@@ -73,16 +73,47 @@ public class FinalScore {
 	}
 	
 	public void nigiriScore() {
-		
+		squidNigiri = squidNigiri + (playerBoard.getOrDefault("squidNigiri", 0) * 3);
+		salmonNigiri = salmonNigiri + (playerBoard.getOrDefault("SalmonNigiri", 0) * 2);
+		eggNigiri = eggNigiri + (playerBoard.getOrDefault("EggNigiri", 0) * 1);
 	}
 	
 	public void wasabiNigiriScore() {
-		
+		squidNigiri = 0;
+		salmonNigiri = 0;
+		eggNigiri = 0;
+		while(playerBoard.getOrDefault("Wasabi", 0) > 0) {
+			if(playerBoard.getOrDefault("SquidNigiri", 0) > 0) {
+				squidNigiri = squidNigiri + 9;
+				playerBoard.replace("Wasabi", (playerBoard.get("Wasabi") - 1));
+				playerBoard.replace("SquidNigiri", (playerBoard.get("SquidNigiri") - 1));
+			}
+			else if (playerBoard.getOrDefault("SalmonNigiri", 0) > 0) {
+				salmonNigiri = salmonNigiri + 6;
+				playerBoard.replace("Wasabi", (playerBoard.get("Wasabi") - 1));
+				playerBoard.replace("SalmonNigiri", (playerBoard.get("SalmonNigiri") - 1));
+			}
+			else if(playerBoard.getOrDefault("EggNigiri", 0) > 0) {
+				eggNigiri = eggNigiri + 3;
+				playerBoard.replace("Wasabi", (playerBoard.get("Wasabi") - 1));
+				playerBoard.replace("EggNigiri", (playerBoard.get("EggNigiri") - 1));
+			}
+			else
+				playerBoard.replace("Wasabi", 0);
+		}
 	}
 	
 	public void displayScore(int player) {
-		finalScore = dumpling + sashimi + tempura + pudding + makiRoll;
+		finalScore = dumpling + sashimi + tempura + pudding + makiRoll + squidNigiri + salmonNigiri + eggNigiri;
 		System.out.println("Player " + player + "'s score: " + finalScore);
+		System.out.println("Dumpling: " + dumpling);
+		System.out.println("Sashimi: " + sashimi);
+		System.out.println("Tempura: " + tempura);
+		System.out.println("SquidNigiri: " + squidNigiri);
+		System.out.println("Salmon: " + salmonNigiri);
+		System.out.println("Egg: " + eggNigiri);
+		System.out.println("pudding: " + pudding);
+		
 	}
 }
 
