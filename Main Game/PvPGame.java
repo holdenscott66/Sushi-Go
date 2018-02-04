@@ -23,9 +23,6 @@ public class PvPGame {
 		int turn = 0;
 		while ((hand1.size() > 0) && (hand2.size() > 0)) {
 			
-			G1.displayBoard(1);
-			G1.displayBoard(2);
-			
 			if(turn % 2 == 0) {
 				p1.setPossibleMoves(hand1);
 				p2.setPossibleMoves(hand2);
@@ -48,9 +45,9 @@ public class PvPGame {
 				G1.updateBoard(p1, p2);
 			}
 			turn++;
-		}
-		G1.displayBoard(1);
-		G1.displayBoard(2);	
+			G1.displayBoard(1);
+			G1.displayBoard(2);
+		}	
 		new FinalScore(G1, 1);
 		new FinalScore(G1, 2);
 	}

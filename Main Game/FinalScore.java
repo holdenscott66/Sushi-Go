@@ -106,14 +106,6 @@ public class FinalScore {
 	public void displayScore(int player) {
 		finalScore = dumpling + sashimi + tempura + pudding + makiRoll + squidNigiri + salmonNigiri + eggNigiri;
 		System.out.println("Player " + player + "'s score: " + finalScore);
-		System.out.println("Dumpling: " + dumpling);
-		System.out.println("Sashimi: " + sashimi);
-		System.out.println("Tempura: " + tempura);
-		System.out.println("SquidNigiri: " + squidNigiri);
-		System.out.println("Salmon: " + salmonNigiri);
-		System.out.println("Egg: " + eggNigiri);
-		System.out.println("pudding: " + pudding);
-		
 	}
 }
 
