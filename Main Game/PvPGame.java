@@ -45,8 +45,11 @@ public class PvPGame {
 				G1.updateBoard(p1, p2);
 			}
 			turn++;
+			System.out.println("*********************************************************");
 			G1.displayBoard(1);
+			System.out.println("*********************************************************");
 			G1.displayBoard(2);
+			System.out.println("*********************************************************");
 		}	
 		new FinalScore(G1, 1);
 		new FinalScore(G1, 2);
