@@ -55,9 +55,9 @@ public class FinalScore {
 	}
 	
 	/**
-	* The methods from dumpingScore to wasabiNigiriScore are methods that set the
-	*specific conditions for card combinations necessary to accrue points
-	*These methods do not take parameters or return values, but update the int variable
+	*The method dumplingScore sets the specific conditions for dumpling card combinations  
+	*that are necessary for the specific card on the board to accrue points
+	*This methods does not take parameters or return values, but update the int variable
 	*finalScore
 	*/
 	
@@ -84,6 +84,13 @@ public class FinalScore {
 		}
 	}
 	
+	/**
+	*The method puddingScore sets the specific conditions for dumpling card combinations  
+	*that are necessary for the specific card on the board to accrue points
+	*This methods does not take parameters or return values, but update the int variable
+	*finalScore
+	*/
+	
 	private void puddingScore() {
 		if(playerBoard.getOrDefault("Pudding", 0) > opponentBoard.getOrDefault("Pudding", 0))
 			finalScore += 6;
@@ -93,6 +100,13 @@ public class FinalScore {
 			finalScore += 0;
 	}
 	
+	/**
+	*The method makiRollScore sets the specific conditions for dumpling card combinations  
+	*that are necessary for the specific card on the board to accrue points
+	*This methods does not take parameters or return values, but update the int variable
+	*finalScore
+	*/
+	
 	private void makiRollScore() {
 		if(playerBoard.getOrDefault("MakiRoll", 0) > opponentBoard.getOrDefault("MakiRoll", 0))
 			finalScore += 5;
@@ -100,19 +114,47 @@ public class FinalScore {
 			finalScore += 0;
 	}
 	
+	/**
+	*The method sashimiScore sets the specific conditions for dumpling card combinations  
+	*that are necessary for the specific card on the board to accrue points
+	*This methods does not take parameters or return values, but update the int variable
+	*finalScore
+	*/
+	
 	private void sashimiScore() {
 		finalScore += (playerBoard.getOrDefault("Sashimi", 0) / 3) * 10;
 	}
 	
+	/**
+	*The method tempuraScore sets the specific conditions for dumpling card combinations  
+	*that are necessary for the specific card on the board to accrue points
+	*This methods does not take parameters or return values, but update the int variable
+	*finalScore
+	*/
+	
 	private void tempuraScore() {
 		finalScore += (playerBoard.getOrDefault("Tempura", 0) / 2) * 5;
 	}
+	
+	/**
+	*The method nigiriScore sets the specific conditions for dumpling card combinations  
+	*that are necessary for the specific card on the board to accrue points
+	*This methods does not take parameters or return values, but update the int variable
+	*finalScore
+	*/
 	
 	private void nigiriScore() {
 		finalScore += (playerBoard.getOrDefault("squidNigiri", 0) * 3);
 		finalScore += (playerBoard.getOrDefault("SalmonNigiri", 0) * 2);
 		finalScore += (playerBoard.getOrDefault("EggNigiri", 0) * 1);
 	}
+	
+	/**
+	*The method wasabiNigiriScore sets the specific conditions for dumpling card combinations  
+	*that are necessary for the specific card on the board to accrue points
+	*This methods does not take parameters or return values, but update the int variable
+	*finalScore
+	*/
 	
 	private void wasabiNigiriScore() {
 		while(playerBoard.getOrDefault("Wasabi", 0) > 0) {
