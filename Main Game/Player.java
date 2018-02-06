@@ -18,7 +18,7 @@ public class Player {
 	/**
 	*The getPossibleMoves method is the getter for the possibleMoves
 	*variable after it has been set
-	*@return possibleMoves that is set b the setter method setPossibleMoves
+	*@return possibleMoves that is set by the setter method setPossibleMoves
 	*/
 	
 	public LinkedList<String> getPossibleMoves() {
