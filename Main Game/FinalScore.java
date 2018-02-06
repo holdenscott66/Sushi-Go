@@ -1,9 +1,38 @@
 import java.util.*;
 
+/**
+*Represents the FinalScore class that is used to produce the final score once the game is over
+*
+*The FinalScore takes the cards that are on the boards of the players and adds up the points
+*based on the cards on the board. The boards are compared to produce the result for the Pudding
+*and Maki cards that add points based on who has the most of the respective cards
+*
+*Each card has a specific method to calculate their points based on the special rules attributed to
+*the card.
+*
+*Once the scores are calculated, the player number and score are displayed
+*/
 public class FinalScore {
 	Hashtable<String, Integer> playerBoard;
 	Hashtable<String, Integer> opponentBoard;
 	private int finalScore;
+	
+	/**
+	*The method FinalScore takes in the player's specific boards where the cards they choose to
+	*keep are stored.
+	*This method calls on the card scoring methods to come up with a finalScore and prints the
+	*final score beside the player it belongs to.
+	*This method does not return anything
+	*
+	*@param game	This is the game object that is created from the GameConfiguration class
+	*		This parameter is used to refer to the player's board and to be able to 
+	*		compare the current player's board against their opponent to calculate
+	*		special card scores that rely on comparing boards
+	*
+	*@param player	This is the player object from the game object that is used to determine
+	*		the player number so that their boards can be assigned and compared 
+	*		accurately
+	*/
 	
 	public FinalScore(GameConfiguration game, int player) {
 		if (player == 1) {
@@ -23,6 +52,13 @@ public class FinalScore {
 		nigiriScore();
 		System.out.println("Player " + player + "'s score: " + finalScore);
 	}
+	
+	/**
+	* The methods from dumpingScore to wasabiNigiriScore are methods that set the
+	*specific conditions for card combinations necessary to accrue points
+	*These methods do not take parameters or return values, but update the int variable
+	*finalScore
+	*/
 	
 	private void dumplingScore() {
 		switch(playerBoard.getOrDefault("Dumpling", 0)) {
