@@ -12,6 +12,7 @@ import java.util.*;
 *
 *Once the scores are calculated, the player number and score are displayed
 */
+
 public class FinalScore {
 	Hashtable<String, Integer> playerBoard;
 	Hashtable<String, Integer> opponentBoard;
