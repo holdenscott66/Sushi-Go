@@ -1,10 +1,24 @@
 import java.util.*;
 
+/**
+*Represents the Deck that will be used in the game
+*The Deck is comprised of 104 cards that will be used in the game
+*The hand used to play the game will be created from the Deck
+*/
+
 public class Deck {
 
 	private LinkedList<String> deckOfCards;
 	private LinkedList<String> hand;
 	private Random randCard;
+	
+	/**
+	*The Deck method creates the deck by running through a for loop
+	*that makes sure the appropriate amount of each card is added into
+	*the deck.
+	*This method does not take in any parameters and does not return 
+	*anything
+	*/
 	
 	public Deck() {
 		deckOfCards = new LinkedList<String>();
@@ -47,6 +61,14 @@ public class Deck {
 			deckOfCards.add("Pudding");
 		}
 	}
+	
+	/**
+	*setHand method used to create a hand from the deck
+	*Cards from the deck are taken at random, and once the card is
+	*added to the hand, the card is removed from the deck
+	*Takes in no parameters
+	*@return the hand used to play the game
+	*/
 	
 	public LinkedList<String> setHand(){
 		if (hand.size() == 0) {
