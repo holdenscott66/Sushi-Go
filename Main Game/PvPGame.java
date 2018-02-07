@@ -1,5 +1,11 @@
 import java.util.*;
 
+/**
+*PVPGame represents the actual gameplay. In this class is the play method that calls
+*objects created from other classes to create the players, the hands, the boards, the 
+*checks needed to determine whether a move is valid, and the scoring at the end of the game
+*?
+
 public class PvPGame {
 	//Variables
 	private Player p1;
@@ -8,7 +14,12 @@ public class PvPGame {
 	private LinkedList<String> hand1;
 	private LinkedList<String> hand2;
 	
-	//constructor
+	
+	/**
+	*The PVPGame method is the constructor that creates the players, the GameConfiguration 
+	*object for the rules, and the hands
+	*/
+
 	public PvPGame() {
 		p1 = new Player();
 		p2 = new Player();
@@ -19,6 +30,15 @@ public class PvPGame {
 		hand2 = G1.getHand(2);
 	}
 	
+	/**
+	*The play method is used to play the game
+	*There is a counter that keeps a track of the turns
+	*The play method runs while the hand size of both players are greater than 0
+	*Once both players' hands are holding 0 cards, then the game ends and the boards are
+	*displayed
+	*Once this method is finished running, then the final score is displayed
+	*/
+
 	public void play() {
 		int turn = 0;
 		while ((hand1.size() > 0) && (hand2.size() > 0)) {
