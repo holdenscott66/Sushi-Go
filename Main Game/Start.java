@@ -3,6 +3,13 @@
  */
 import java.util.*;
 
+/**
+*The Start class represents the beginning of the game where the user has a list of
+*options they can choose from that involve playing the game and viewing the rules
+*The user will select an option based on their input
+*This is how the game will begin
+*/
+
 public class Start {
 
 	private static Scanner user_input;
@@ -46,16 +53,31 @@ public class Start {
 			}
 		}
 	}
+	/**
+	*The playerVSplayer method runs when the user decides to play a human vs human
+	*game of Sushi Go
+	*Selection player vs player initializes this method and the object PVPGame is 
+	*called from the PVPGame class
+	*/
 	
 	public static void playerVSplayer() {
 		PvPGame game = new PvPGame();		
 		game.play();
 	}
 	
+	/**
+	*playerVSeasy is the option to play against an easy ai
+	*This will be implemented at a later date
+	*/
+	
 	public static void playerVSeasy() {
 		
 	}
 	
+	/**
+	*playerVShard is the option to play against an easy ai
+	*This will be implemented at a later date
+	*/
 	public static void playerVShard() {
 		
 	}
