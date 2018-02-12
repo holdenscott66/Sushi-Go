@@ -4,7 +4,7 @@ import java.util.*;
 *PVPGame represents the actual gameplay. In this class is the play method that calls
 *objects created from other classes to create the players, the hands, the boards, the 
 *checks needed to determine whether a move is valid, and the scoring at the end of the game
-*?
+*/
 
 public class PvPGame {
 	//Variables
