@@ -15,8 +15,8 @@ import java.util.*;
 
 public class FinalScore {
 	Hashtable<String, Integer> playerBoard;
-	Hashtable<String, Integer> opponentBoard;
-	private Player[] players; 
+	Hashtable<String, Integer> opponentBoard1, opponentBoard2, opponentBoard3; 
+	Hashtable<String, Integer>[] opponents;
 	private int finalScore;
 	
 	/**
@@ -36,16 +36,31 @@ public class FinalScore {
 	*		accurately
 	*/
 	
-	public FinalScore(GameConfiguration game, Player player) {
-		players = game.getPlayers();
-		if (player.getID() == 1) {
-			playerBoard = players[0].getBoard();
-			opponentBoard = players[1].getBoard();
-		}
-		else if (player.getID() == 2) {
-			playerBoard = players[1].getBoard();
-			opponentBoard = players[0].getBoard();
-		}
+	public FinalScore(GameConfiguration game, Player player1, Player opponent1) {
+		playerBoard = player1.getBoard();
+		opponents = new Hashtable[1];
+		opponents[0] = opponent1.getBoard();
+		calcScore(player1);
+	}
+	
+	public FinalScore(GameConfiguration game, Player player1, Player opponent1, Player opponent2) {
+		playerBoard = player1.getBoard();
+		opponents = new Hashtable[2];
+		opponents[0] = opponent1.getBoard();
+		opponents[1] = opponent2.getBoard();
+		calcScore(player1);
+	}
+	
+	public FinalScore(GameConfiguration game, Player player1, Player opponent1, Player opponent2, Player opponent3) {
+		playerBoard = player1.getBoard();
+		opponents = new Hashtable[3];
+		opponents[0] = opponent1.getBoard();
+		opponents[1] = opponent2.getBoard();
+		opponents[2] = opponent3.getBoard();
+		calcScore(player1);
+	}
+	
+	private void calcScore(Player player) {
 		dumplingScore();
 		puddingScore();
 		makiRollScore();
@@ -94,12 +109,31 @@ public class FinalScore {
 	*/
 	
 	private void puddingScore() {
-		if(playerBoard.getOrDefault("Pudding", 0) > opponentBoard.getOrDefault("Pudding", 0))
+		boolean mostPudding = true;
+		boolean leastPudding = true;
+		for(int num = 0; num < opponents.length; num++) {
+			if(playerBoard.getOrDefault("Pudding", 0) > opponents[num].getOrDefault("Pudding", 0))
+				mostPudding = true;
+			else {
+				mostPudding = false;
+				break;
+			}
+		}
+		for(int num = 0; num < opponents.length; num++) {
+			if(playerBoard.getOrDefault("Pudding", 0) < opponents[num].getOrDefault("Pudding", 0))
+				leastPudding = true;
+			else {
+				leastPudding = false;
+				break;
+			}
+		}
+		if(mostPudding == true && leastPudding == false)
 			finalScore += 6;
-		else if(playerBoard.getOrDefault("Pudding", 0) < opponentBoard.getOrDefault("Pudding", 0))
-			finalScore += -6;
+		else if(mostPudding == false && leastPudding == true)
+			finalScore -= 6;
 		else
 			finalScore += 0;
+		
 	}
 	
 	/**
@@ -110,7 +144,16 @@ public class FinalScore {
 	*/
 	
 	private void makiRollScore() {
-		if(playerBoard.getOrDefault("MakiRoll", 0) > opponentBoard.getOrDefault("MakiRoll", 0))
+		boolean mostMaki = true;
+		for(int num = 0; num < opponents.length; num++) {
+			if(playerBoard.getOrDefault("MakiRoll", 0) > opponents[num].getOrDefault("MakiRoll", 0))
+				mostMaki = true;
+			else {
+				mostMaki = false;
+				break;
+			}
+		}
+		if(mostMaki == true)
 			finalScore += 5;
 		else
 			finalScore += 0;
