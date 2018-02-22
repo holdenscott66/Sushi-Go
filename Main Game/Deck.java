@@ -9,7 +9,7 @@ import java.util.*;
 public class Deck {
 
 	private LinkedList<String> deckOfCards;
-	private LinkedList<String> hand;
+	private LinkedList<String>[] hands;
 	private Random randCard;
 	
 	/**
@@ -22,7 +22,6 @@ public class Deck {
 	
 	public Deck() {
 		deckOfCards = new LinkedList<String>();
-		hand = new LinkedList<String>();
 		randCard = new Random();
 		
 		for(int cardNumber = 0; cardNumber < 14; cardNumber++) {
@@ -70,23 +69,19 @@ public class Deck {
 	*@return the hand used to play the game
 	*/
 	
-	public LinkedList<String> setHand(){
-		if (hand.size() == 0) {
+	public LinkedList<String>[] setHand(int numHands){
+		hands = new LinkedList[numHands];
+		for(int handNum = 0; handNum < numHands; handNum++) {
+			LinkedList<String> hand = new LinkedList<String>();
 			for(int count = 0; count < 10; count ++) {
 				int cardNum = randCard.nextInt(deckOfCards.size());
 				String newCard = deckOfCards.get(cardNum);
 				hand.add(newCard);
 				deckOfCards.remove(cardNum);
 			}
+			hands[handNum] = hand;
 		}
-		else {
-			for(int count = 0; count < 10; count ++) {
-				int cardNum = randCard.nextInt(deckOfCards.size());
-				String newCard = deckOfCards.get(cardNum);
-				hand.set(count, newCard);
-				deckOfCards.remove(cardNum);
-			}
-		}
-		return hand;
+		
+		return hands;
 	}
 }

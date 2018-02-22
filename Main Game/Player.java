@@ -11,9 +11,9 @@ import java.util.*;
 public class Player {
 	
 	private LinkedList<String> possibleMoves;
-	private int selection;
-	private Scanner user_input;
 	private String card;
+	private int playerID;
+	private Hashtable<String, Integer> board = new Hashtable();
 	
 	/**
 	*The getPossibleMoves method is the getter for the possibleMoves
@@ -21,10 +21,14 @@ public class Player {
 	*@return possibleMoves that is set by the setter method setPossibleMoves
 	*/
 	
+	
 	public LinkedList<String> getPossibleMoves() {
 		return possibleMoves;
 	}
 	
+	public int getID() {
+		return playerID;
+	}
 	/**
 	*The setPossibleMoves is a method that assogms the possibleMoves variable 
 	*to the hand parameter
@@ -37,6 +41,9 @@ public class Player {
 		possibleMoves = hand;
 	}
 	
+	public void move() {
+		
+	}
 	/**
 	*The move method asks the player which card they choose to place on their
 	*board
@@ -45,20 +52,8 @@ public class Player {
 	*		the player has to figure out if their move is possible
 	*/
 	
-	public void move(int player) {
-		user_input = new Scanner(System.in);
-		System.out.println("Player " + player + ", Enter the number of the card you choose:");
-
-		while (true) {
-			selection = user_input.nextInt();
-			if (selection > (possibleMoves.size() + 1) || selection < 1) {
-				System.out.println("Please choose a valid option");
-			}
-			else {
-				card = possibleMoves.get(selection - 1);
-				break;
-			}
-		}
+	public Hashtable<String,Integer> getBoard() {
+		return board;
 	}
 	
 	/**

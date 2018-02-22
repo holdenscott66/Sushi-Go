@@ -16,6 +16,7 @@ import java.util.*;
 public class FinalScore {
 	Hashtable<String, Integer> playerBoard;
 	Hashtable<String, Integer> opponentBoard;
+	private Player[] players; 
 	private int finalScore;
 	
 	/**
@@ -35,14 +36,15 @@ public class FinalScore {
 	*		accurately
 	*/
 	
-	public FinalScore(GameConfiguration game, int player) {
-		if (player == 1) {
-			playerBoard = game.getBoard(1);
-			opponentBoard = game.getBoard(2);
+	public FinalScore(GameConfiguration game, Player player) {
+		players = game.getPlayers();
+		if (player.getID() == 1) {
+			playerBoard = players[0].getBoard();
+			opponentBoard = players[1].getBoard();
 		}
-		else if (player == 2) {
-			playerBoard = game.getBoard(2);
-			opponentBoard = game.getBoard(1);
+		else if (player.getID() == 2) {
+			playerBoard = players[1].getBoard();
+			opponentBoard = players[0].getBoard();
 		}
 		dumplingScore();
 		puddingScore();
@@ -51,7 +53,7 @@ public class FinalScore {
 		tempuraScore();
 		wasabiNigiriScore();
 		nigiriScore();
-		System.out.println("Player " + player + "'s score: " + finalScore);
+		System.out.println(player.toString() + "'s score: " + finalScore);
 	}
 	
 	/**

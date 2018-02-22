@@ -11,26 +11,38 @@ import java.util.*;
 */
 
 public class GameConfiguration {
-	
+	private Player[] players; 
+	private LinkedList<String>[] hands;
 	private Deck newDeck;
-	private LinkedList<String> hand1;
-	private LinkedList<String> hand2;
-	Hashtable<String, Integer> boardp1;
-	Hashtable<String, Integer> boardp2;
+	
 	
 	/**
 	*The GameConfiguration method creates the deck, the boards, and the hands
 	*Takes in no parameters and does not return anything
 	*/
 	
-	public GameConfiguration() {
+	public GameConfiguration(int mode, int numPlayers) {
+		players = new Player[numPlayers];
 		newDeck = new Deck();
-		boardp1 = new Hashtable<String, Integer>();
-		boardp2 = new Hashtable<String, Integer>();
-		hand1 = new LinkedList<String>();
-		hand2 = new LinkedList<String>();
-		hand1.addAll(newDeck.setHand());
-		hand2.addAll(newDeck.setHand());
+		hands = newDeck.setHand(numPlayers);
+		if(mode == 1) {
+			for(int count = 0; count < numPlayers; count++) {
+				players[count] = new Human(count);
+			}
+		}
+		else if(mode == 2) {
+			players[0] = new Human();
+			for(int count = 1; count < numPlayers; count++) {
+				players[count] = new EasyComputer(count - 1);
+			}
+		}
+		
+		else if(mode == 3) {
+			players[0] = new Human();
+			for(int count = 1; count < numPlayers; count++) {
+				players[count] = new HardComputer(count - 1);
+			}
+		}
 	}
 	
 	/**
@@ -40,8 +52,8 @@ public class GameConfiguration {
 	*@return the respective hand based on whether they are player 1 or not
 	*/
 	
-	public LinkedList<String> getHand(int player) {
-		return(player == 1) ? hand1 : hand2;
+	public LinkedList<String> getHand(int handNum) {
+		return hands[handNum];
 	}
 	
 	/**
@@ -52,10 +64,10 @@ public class GameConfiguration {
 	*		the player
 	*/
 	
-	public void displayHand(int player, LinkedList<String> hand) {
-			System.out.println("Player " + player + ":" );
-			for(int count = 0; count < hand.size(); count++) {
-				System.out.println((count + 1) + ")" + "      " + hand.get(count));
+	public void displayHand(Player player, int handNum) {
+			System.out.println(player.toString() + ":" );
+			for(int count = 0; count < hands[handNum].size(); count++) {
+				System.out.println((count + 1) + ")" + "      " + hands[handNum].get(count));
 			}
 	}
 	
@@ -68,41 +80,13 @@ public class GameConfiguration {
 	*			removed which card
 	*/
 	
-	public void updateHands(Player firstPlayer, Player secondPlayer) {
-		hand1.remove(firstPlayer.cardPlayed());
-		hand2.remove(secondPlayer.cardPlayed());
+	public void updateHand(int playerNum, int handNum) {
+		hands[handNum].remove(players[playerNum].cardPlayed());
+	}	
+	
+	public Player[] getPlayers() {
+		return players;
 	}
-	
-	/**
-	*The updateBoard method is used to update the board based on
-	*the card the player played
-	*@param player1		these parameters are used to distinguish
-	*@param player2		between the two players and the card that
-	*			they played
-	*This method checks to see if the card played is already on the 
-	*respective board
-	*If the card was already on the board, then it increments by 1
-	*If the card was not on the board, it creates the entry and assigns
-	*it the value 1 representing 1 card of that entry
-	*/
-	
-	public void updateBoard(Player player1, Player player2) {
-		String card1 = player1.cardPlayed();
-		String card2 = player2.cardPlayed();
-		if(boardp1.containsKey(card1)) {
-			boardp1.replace(card1, (boardp1.get(card1) + 1));
-		}
-		else {
-			boardp1.put(card1, 1);	
-		}
-		if(boardp2.containsKey(card2)) {
-			boardp2.replace(card2, (boardp2.get(card2) + 1));
-		}
-		else {
-			boardp2.put(card2, 1);	
-		}
-	}
-	
 	/**
 	*The getBoard method is used to create the board used by players
 	*to record the cards they wish to keep for points
@@ -112,9 +96,6 @@ public class GameConfiguration {
 	*@return the board based on whether the player is player 1 or not
 	*/
 	
-	public Hashtable<String,Integer> getBoard(int player) {
-		return player == 1 ? boardp1 : boardp2;
-	}
 	
 	/**
 	*The displayBoard method is used to display the board with the cards
@@ -125,15 +106,10 @@ public class GameConfiguration {
 	*player's cards
 	*/
 	
-	public void displayBoard(int player) {
+	public void displayBoard(Player player) {
 		Hashtable<String, Integer> board = new Hashtable<String, Integer>();
-		System.out.println("Player "+ player + "'s board:");
-		if (player == 1) {
-			board = boardp1;
-		}
-		else if (player == 2) {
-			board = boardp2;
-		}
+		System.out.println(player.toString() + "'s board:");
+		board = players[(player.getID() - 1)].getBoard();
 		for (String val : ((Hashtable<String,Integer>) board).keySet()) {
 		    System.out.println(val + ":" + board.get(val));
 		}
