@@ -44,7 +44,7 @@ public class Human extends Player {
                 System.out.printf("\"%s\" is not a valid number.\n", input);
             }
             selection = user_input.nextInt();
-        } while (selection > (possibleMoves.size() + 1) || selection < 1);
+        } while (selection > (possibleMoves.size()) || selection < 1);
 		
 		card = possibleMoves.get(selection - 1);
 

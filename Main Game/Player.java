@@ -44,6 +44,10 @@ public class Player {
 	public void move() {
 		
 	}
+	
+	public String toString() {
+		return null;
+	}
 	/**
 	*The move method asks the player which card they choose to place on their
 	*board

@@ -109,10 +109,9 @@ public class GameConfiguration {
 	public void displayBoard(Player player) {
 		Hashtable<String, Integer> board = new Hashtable<String, Integer>();
 		System.out.println(player.toString() + "'s board:");
-		board = players[(player.getID() - 1)].getBoard();
+		board = player.getBoard();
 		for (String val : ((Hashtable<String,Integer>) board).keySet()) {
 		    System.out.println(val + ":" + board.get(val));
 		}
 	}
 }
-

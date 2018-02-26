@@ -1,18 +1,8 @@
-/**
-*PVPGame represents the actual gameplay. In this class is the play method that calls
-*objects created from other classes to create the players, the hands, the boards, the 
-*checks needed to determine whether a move is valid, and the scoring at the end of the game
-*/
 
 public class GamePlay {
 	private Player[] players;
 	int numPlayers;
 	GameConfiguration game;
-	
-	/**
-	*The PVPGame method is the constructor that creates the players, the GameConfiguration 
-	*object for the rules, and the hands
-	*/
 
 	public GamePlay(GameConfiguration config) {
 		game = config;
@@ -25,38 +15,25 @@ public class GamePlay {
 		else if (numPlayers == 4)
 			fourPlayer();
 	}
-
-	/**
-	*The play method is used to play the game
-	*There is a counter that keeps a track of the turns
-	*The play method runs while the hand size of both players are greater than 0
-	*Once both players' hands are holding 0 cards, then the game ends and the boards are
-	*displayed
-	*Once this method is finished running, then the final score is displayed
-	*/
-
+		
 	public void twoPlayer() {
 		int turn = 0;
 		while ((game.getHand(0).size() > 0) && (game.getHand(1).size() > 0)) {
 			if(turn % 2 == 0) {
-					players[0].setPossibleMoves(game.getHand(0));
-					players[1].setPossibleMoves(game.getHand(1));
-					game.displayHand(players[0], 0);
-					players[0].move();
-					game.updateHand(0, 0);
-					game.displayHand(players[1], 1);
-					players[1].move();
-					game.updateHand(1, 1);
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand(count));
+					game.displayHand(players[count], count);
+					players[count].move();
+					game.updateHand(count, count);
+				}
 			}
 			else if(turn % 2 == 1) {
-					players[0].setPossibleMoves(game.getHand(1));
-					players[1].setPossibleMoves(game.getHand(0));
-					game.displayHand(players[0], 1);
-					players[0].move();
-					game.updateHand(0, 1);
-					game.displayHand(players[1], 0);
-					players[1].move();
-					game.updateHand(1, 0);
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand((count + 1) % 2));
+					game.displayHand(players[count], (count + 1) % 2);
+					players[count].move();
+					game.updateHand(count, (count + 1) % 2);
+				}
 			}
 			turn++;
 			System.out.println("*********************************************************");
@@ -65,54 +42,36 @@ public class GamePlay {
 				System.out.println("*********************************************************");
 			}	
 		}
-		new FinalScore(game, players[0], players[1]);
-		new FinalScore(game, players[1], players[0]);
+		new FinalScore(game, players[0], players[1]).toString();
+		new FinalScore(game, players[1], players[0]).toString();
 	}
 	
 	public void threePlayer() {
 		int turn = 0;
 		while ((game.getHand(0).size() > 0) && (game.getHand(1).size() > 0) && (game.getHand(2).size() > 0)) {
-			if(turn % 3 == 1) {
-				players[0].setPossibleMoves(game.getHand(0));
-				players[1].setPossibleMoves(game.getHand(1));
-				players[2].setPossibleMoves(game.getHand(2));
-				game.displayHand(players[0], 0);
-				players[0].move();
-				game.updateHand(0, 0);
-				game.displayHand(players[1], 1);
-				players[1].move();
-				game.updateHand(1, 1);
-				game.displayHand(players[2], 2);
-				players[2].move();
-				game.updateHand(2, 2);
+			if(turn % numPlayers == 0) {
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand((count + 1) % numPlayers));
+					game.displayHand(players[count], (count + 1) % numPlayers);
+					players[count].move();
+					game.updateHand(count, (count + 1) % numPlayers);
+				}
 			}
-			else if(turn % 3 == 0) {
-				players[0].setPossibleMoves(game.getHand(1));
-				players[1].setPossibleMoves(game.getHand(2));
-				players[2].setPossibleMoves(game.getHand(0));
-				game.displayHand(players[0], 1);
-				players[0].move();
-				game.updateHand(0, 1);
-				game.displayHand(players[1], 2);
-				players[1].move();
-				game.updateHand(1, 2);
-				game.displayHand(players[2], 0);
-				players[2].move();
-				game.updateHand(2, 0);
+			else if(turn % numPlayers == 1) {
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand(count));
+					game.displayHand(players[count], count);
+					players[count].move();
+					game.updateHand(count, count);
+				}
 			}
-			else if(turn % 3 == 2) {
-				players[0].setPossibleMoves(game.getHand(2));
-				players[1].setPossibleMoves(game.getHand(0));
-				players[2].setPossibleMoves(game.getHand(1));
-				game.displayHand(players[0], 2);
-				players[0].move();
-				game.updateHand(0, 2);
-				game.displayHand(players[1], 0);
-				players[1].move();
-				game.updateHand(1, 0);
-				game.displayHand(players[2], 1);
-				players[2].move();
-				game.updateHand(2, 1);
+			else if(turn % numPlayers == 2) {
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand((count + 2) % numPlayers));
+					game.displayHand(players[count], (count + 2) % numPlayers);
+					players[count].move();
+					game.updateHand(count, (count + 2) % numPlayers);
+				}
 		}
 			turn++;
 			System.out.println("*********************************************************");
@@ -121,85 +80,45 @@ public class GamePlay {
 				System.out.println("*********************************************************");
 			}	
 		}
-		new FinalScore(game, players[0], players[1], players[2]);
-		new FinalScore(game, players[1], players[0], players[2]);
-		new FinalScore(game, players[2], players[1], players[0]);
+		new FinalScore(game, players[0], players[1], players[2]).toString();
+		new FinalScore(game, players[1], players[0], players[2]).toString();
+		new FinalScore(game, players[2], players[1], players[0]).toString();
 	}
 	
 	public void fourPlayer() {
 		int turn = 0;
 		while ((game.getHand(0).size() > 0) && (game.getHand(1).size() > 0) && (game.getHand(2).size() > 0) && (game.getHand(3).size() > 0)) {
-			if(turn % 4 == 2) {
-				players[0].setPossibleMoves(game.getHand(0));
-				players[1].setPossibleMoves(game.getHand(1));
-				players[2].setPossibleMoves(game.getHand(2));
-				players[3].setPossibleMoves(game.getHand(3));
-				game.displayHand(players[0], 0);
-				players[0].move();
-				game.updateHand(0, 0);
-				game.displayHand(players[1], 1);
-				players[1].move();
-				game.updateHand(1, 1);
-				game.displayHand(players[2], 2);
-				players[2].move();
-				game.updateHand(2, 2);
-				game.displayHand(players[3], 3);
-				players[3].move();
-				game.updateHand(3, 3);
+			if(turn % numPlayers == 2) {
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand(count));
+					game.displayHand(players[count], count);
+					players[count].move();
+					game.updateHand(count, count);
+				}
 			}
-			else if(turn % 4 == 1) {
-				players[0].setPossibleMoves(game.getHand(1));
-				players[1].setPossibleMoves(game.getHand(2));
-				players[2].setPossibleMoves(game.getHand(3));
-				players[3].setPossibleMoves(game.getHand(0));
-				game.displayHand(players[0], 1);
-				players[0].move();
-				game.updateHand(0, 1);
-				game.displayHand(players[1], 2);
-				players[1].move();
-				game.updateHand(1, 2);
-				game.displayHand(players[2], 3);
-				players[2].move();
-				game.updateHand(2, 3);
-				game.displayHand(players[3], 0);
-				players[3].move();
-				game.updateHand(3, 0);
+			else if(turn % numPlayers == 1) {
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand((count + 1) % 4));
+					game.displayHand(players[count], (count + 1) % 4);
+					players[count].move();
+					game.updateHand(count, (count + 1) % 4);
+				}
 			}
-			else if(turn % 4 == 0) {
-				players[0].setPossibleMoves(game.getHand(2));
-				players[1].setPossibleMoves(game.getHand(3));
-				players[2].setPossibleMoves(game.getHand(0));
-				players[3].setPossibleMoves(game.getHand(1));
-				game.displayHand(players[0], 2);
-				players[0].move();
-				game.updateHand(0, 2);
-				game.displayHand(players[1], 3);
-				players[1].move();
-				game.updateHand(1, 3);
-				game.displayHand(players[2], 0);
-				players[2].move();
-				game.updateHand(2, 0);
-				game.displayHand(players[3], 1);
-				players[3].move();
-				game.updateHand(3, 1);
+			else if(turn % numPlayers == 0) {
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand((count + 2) % 4));
+					game.displayHand(players[count], (count + 2) % 4);
+					players[count].move();
+					game.updateHand(count, (count + 2) % 4);
+				}
 			}
-			else if(turn % 4 == 3) {
-				players[0].setPossibleMoves(game.getHand(3));
-				players[1].setPossibleMoves(game.getHand(0));
-				players[2].setPossibleMoves(game.getHand(1));
-				players[3].setPossibleMoves(game.getHand(2));
-				game.displayHand(players[0], 3);
-				players[0].move();
-				game.updateHand(0, 3);
-				game.displayHand(players[1], 0);
-				players[1].move();
-				game.updateHand(1, 0);
-				game.displayHand(players[2], 1);
-				players[2].move();
-				game.updateHand(2, 1);
-				game.displayHand(players[3], 2);
-				players[3].move();
-				game.updateHand(3, 2);
+			else if(turn % numPlayers == 3) {
+				for(int count = 0; count < numPlayers; count++) {
+					players[count].setPossibleMoves(game.getHand((count + 3) % numPlayers));
+					game.displayHand(players[count], (count + 3) % numPlayers);
+					players[count].move();
+					game.updateHand(count, (count + 3) % numPlayers);
+				}
 		}
 			turn++;
 			System.out.println("*********************************************************");
@@ -208,9 +127,9 @@ public class GamePlay {
 				System.out.println("*********************************************************");
 			}	
 		}
-		new FinalScore(game, players[0], players[1], players[2], players[3]);
-		new FinalScore(game, players[1], players[0], players[2], players[3]);
-		new FinalScore(game, players[2], players[1], players[0], players[3]);
-		new FinalScore(game, players[3], players[1], players[2], players[0]);
+		new FinalScore(game, players[0], players[1], players[2], players[3]).toString();
+		new FinalScore(game, players[1], players[0], players[2], players[3]).toString();
+		new FinalScore(game, players[2], players[1], players[0], players[3]).toString();
+		new FinalScore(game, players[3], players[1], players[2], players[0]).toString();
 	}
 }
