@@ -1,6 +1,7 @@
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -9,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -35,6 +37,7 @@ public class GUI extends Application {
 	Button threePlayerButton;
 	Button fourPlayerButton;
 	Button readyButton;
+	Button buttonCards;
 	
 	private GameConfiguration game;
 	
@@ -44,7 +47,6 @@ public class GUI extends Application {
 		
 	}
 	
-	ImageView[] handPics;
 	
 	
 
@@ -183,14 +185,26 @@ public class GUI extends Application {
 		HBox FaceDown = new HBox(15);
 		boxPic.setAlignment(Pos.BOTTOM_CENTER);
 		FaceDown.setAlignment(Pos.TOP_CENTER);
-		//while(game.getHand(0).size() > 0 && game.getHand(1).size() > 0) {
+		
+		
 			for (int i = 0; i < game.getHand(0).size(); i++) {
+				
 				System.out.println(game.getHand(0).get(i));
 				ImageView view = new ImageView(game.getHand(0).get(i) + ".png");
+				
+				
+				Button buttonCards = new Button(null, view);
+				buttonCards.setText(game.getHand(0).get(i));
+				buttonCards.setOnAction(e -> System.out.println("I HAVE BEEN CLICKED"));
+				buttonCards.setContentDisplay(ContentDisplay.TOP);
+				
 				view.setFitWidth(100);
 				view.setFitHeight(150);
-				boxPic.getChildren().add(view);
+				
+				boxPic.getChildren().addAll(buttonCards, view);
+
 			}
+			
 			
 			for (int i = 0; i < game.getHand(1).size(); i++) {
 				System.out.println(game.getHand(1).get(i));
@@ -198,18 +212,29 @@ public class GUI extends Application {
 				view.setFitWidth(100);
 				view.setFitHeight(150);
 				FaceDown.getChildren().add(view);
+				
 			}
 		
+			
+			
+			
+			
+			 
+			 
+			/*
+			view.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+		         System.out.println("Tile pressed ");
+		         event.consume();
+		     });
+			*/
+			
+			
 			
 		layout5.getChildren().addAll(Background,boxPic,FaceDown);
 		
 		Label label1 = new Label("Your turn!");
 		
 		scene5 = new Scene(layout5, 1366, 766);
-		
-		
-		
-		
 		
 		
 		
