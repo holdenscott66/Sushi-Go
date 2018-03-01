@@ -17,7 +17,15 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
+/*
 
+
+LAST FACE DOWN BUTTON WORKS(TOP RIGHT BUTTON)
+
+
+
+
+*/
 
 //if you want user events you need the eventHandler<ActionEvent> at the end of the class
 public class GUI extends Application {
