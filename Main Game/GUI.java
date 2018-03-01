@@ -17,15 +17,14 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
 
+
 /*
-
-
-LAST FACE DOWN BUTTON WORKS(TOP RIGHT BUTTON)
-
-
-
-
+* personal notes: play button skips straight into the play area just for faster testing
+* the for loop that creates the flipped cards was screwing with the buttons so it's been removed temporarily 
+*
+*
 */
+
 
 //if you want user events you need the eventHandler<ActionEvent> at the end of the class
 public class GUI extends Application {
@@ -72,12 +71,19 @@ public class GUI extends Application {
 		
 		window = primaryStage;
 		
+		
+	
+		StackPane layout1 = new StackPane();
+		
+		
 		// Label label1 = new Label("Welcome to Sushi Go!");
 		
 		playButton = new Button();
 		
 			playButton.setText("Play");
-			playButton.setOnAction(e -> window.setScene(scene2));
+										
+										//CHANGE THIS TO SCENE 2
+			playButton.setOnAction(e -> window.setScene(scene5));
 		
 		//move the button a little bit off the edge
 	//	playButton.setTranslateX(30);
@@ -101,7 +107,7 @@ public class GUI extends Application {
 		exitButton.setTranslateY(100);
 		
 		//Layout 1 - vertical column
-		StackPane layout1 = new StackPane();
+		
 		//ImageView mainmenu = new ImageView("h.png");
 		
 		layout1.getChildren().addAll(playButton, rulesButton, exitButton);
@@ -184,6 +190,13 @@ public class GUI extends Application {
 		
 		scene4 = new Scene(layout4, 500, 500);
 		
+		
+		
+		
+		
+		
+		
+		
 		StackPane layout5 = new StackPane();
 		
 		
@@ -197,82 +210,51 @@ public class GUI extends Application {
 		boxPic.setAlignment(Pos.BOTTOM_CENTER);
 		FaceDown.setAlignment(Pos.TOP_CENTER);
 		
-		
-		if(game.getHand(0).size() > 0) {
-			
+	
 			
 			ImageView view = null;
-			Button buttonCards = null;
-			ImageView fD = null;
+		//	ImageView fD = null;
+			
+			
 			for (int i = 0; i < game.getHand(0).size(); i++) {
-				
-				// System.out.println(game.getHand(0).get(i));
-				 view = new ImageView(game.getHand(0).get(i) + ".png");
-				
-			
+				view = new ImageView(game.getHand(0).get(i) + ".png");
 				buttonCards = new Button(null, view);
-				
 				buttonCards.setText(game.getHand(0).get(i));
-				buttonCards.setContentDisplay(ContentDisplay.TOP);
+				buttonCards.setMaxWidth(100);
 				
-			
+				//move the button to the middle while forcing the change to height and width
+				//delete the button
+					
+			   
+				
+			    buttonCards.setOnAction((e)-> {
+			    	
+			    	System.out.println("Button pressed " + ((Button) e.getSource()).getText());
+				
+			    	
+			    	
+			    	
+			    });
+				
 				view.setFitWidth(100);
 				view.setFitHeight(150);
 				
+
+				buttonCards.setContentDisplay(ContentDisplay.TOP);
 				boxPic.getChildren().addAll(buttonCards);
 
 			}
-			
+			/*
 			for (int i = 0; i < game.getHand(1).size(); i++) {
 				System.out.println(game.getHand(1).get(i));
 				fD = new ImageView("FaceDown.png");
 				fD.setFitWidth(100);
 				fD.setFitHeight(150);
 				FaceDown.getChildren().add(fD);
-				
-			}
-			
-			
-			view.setOnMouseClicked((MouseEvent event) -> {
-				
-				
-		        System.out.println("hey");
-		        });
-			
-			fD.setOnMouseClicked((MouseEvent event) -> {
-				
-				
-		        System.out.println("sup");
-		        });
-			
-			
-			
-		}
-		
-			if (game.getHand(0).size() > 0) { 
-				
-				
-			//	buttonCards.setOnAction(e -> System.out.println("I JAVE BEEN CJIKCEDL"));
-				
+				}
 
-				
-				
-		}
-			
-			
-			
-			 
-			 
-			/*
-			view.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-		         System.out.println("Tile pressed ");
-		         event.consume();
-		     });
 			*/
-			
-			
-			
-		layout5.getChildren().addAll(Background,boxPic,FaceDown);
+		layout5.getChildren().addAll(Background,boxPic);
 		
 		Label label1 = new Label("Your turn!");
 		
