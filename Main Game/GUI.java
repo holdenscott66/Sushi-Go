@@ -46,8 +46,7 @@ public class GUI extends Application {
 		game = new GameConfiguration(1, 2);
 		
 	}
-	
-	
+
 	
 
 	
@@ -178,44 +177,79 @@ public class GUI extends Application {
 		scene4 = new Scene(layout4, 500, 500);
 		
 		StackPane layout5 = new StackPane();
+		
+		
 		ImageView Background = new ImageView("Background.jpg");
 		Background.setFitWidth(1920);
 		Background.setFitHeight(1080);
+		
 		HBox boxPic = new HBox(15);
 		HBox FaceDown = new HBox(15);
+		
 		boxPic.setAlignment(Pos.BOTTOM_CENTER);
 		FaceDown.setAlignment(Pos.TOP_CENTER);
 		
 		
+		if(game.getHand(0).size() > 0) {
+			
+			
+			ImageView view = null;
+			Button buttonCards = null;
+			ImageView fD = null;
 			for (int i = 0; i < game.getHand(0).size(); i++) {
 				
-				System.out.println(game.getHand(0).get(i));
-				ImageView view = new ImageView(game.getHand(0).get(i) + ".png");
+				// System.out.println(game.getHand(0).get(i));
+				 view = new ImageView(game.getHand(0).get(i) + ".png");
 				
+			
+				buttonCards = new Button(null, view);
 				
-				Button buttonCards = new Button(null, view);
 				buttonCards.setText(game.getHand(0).get(i));
-				buttonCards.setOnAction(e -> System.out.println("I HAVE BEEN CLICKED"));
 				buttonCards.setContentDisplay(ContentDisplay.TOP);
 				
+			
 				view.setFitWidth(100);
 				view.setFitHeight(150);
 				
-				boxPic.getChildren().addAll(buttonCards, view);
+				boxPic.getChildren().addAll(buttonCards);
 
 			}
 			
-			
 			for (int i = 0; i < game.getHand(1).size(); i++) {
 				System.out.println(game.getHand(1).get(i));
-				ImageView view = new ImageView("FaceDown.png");
-				view.setFitWidth(100);
-				view.setFitHeight(150);
-				FaceDown.getChildren().add(view);
+				fD = new ImageView("FaceDown.png");
+				fD.setFitWidth(100);
+				fD.setFitHeight(150);
+				FaceDown.getChildren().add(fD);
 				
 			}
-		
 			
+			
+			view.setOnMouseClicked((MouseEvent event) -> {
+				
+				
+		        System.out.println("hey");
+		        });
+			
+			fD.setOnMouseClicked((MouseEvent event) -> {
+				
+				
+		        System.out.println("sup");
+		        });
+			
+			
+			
+		}
+		
+			if (game.getHand(0).size() > 0) { 
+				
+				
+			//	buttonCards.setOnAction(e -> System.out.println("I JAVE BEEN CJIKCEDL"));
+				
+
+				
+				
+		}
 			
 			
 			
